@@ -42,6 +42,28 @@ public class Contato {
         
     }
 
+    public boolean Validar(){
+        String emailValida = "^[\\w-\\+]+(\\.[\\w]+)^*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$"
+        String telValida = "(##) #####-####"
+        for (TelefoneEmail telefoneEmail : telefoneEmails) {
+            if(telefoneEmail.getTipo().equals("email")){
+                if(telefoneEmail.getValor().matches(emailValida)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                if(telefoneEmail.getValor().matches(telValida)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+
+        }
+    }
+
+
     public ArrayList<TelefoneEmail> getTelefoneEmails() {
         return telefoneEmails;
     }

@@ -32,5 +32,11 @@ public class TelefoneEmail {
     public TelefoneEmail Mostrar(){
         
     }
+    public String getTipo() {
+        return tipo;
+    }
+    public String getValor() {
+        return valor;
+    }
 
 }
