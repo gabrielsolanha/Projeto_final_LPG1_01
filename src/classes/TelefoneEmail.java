@@ -7,12 +7,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-enum Tipo {
-    EMAIL,
-    TELEFONE
-}
-
 public class TelefoneEmail {
+    public enum Tipo {
+        EMAIL,
+        TELEFONE
+    }
+
     private String id;
     private String rotulo;
     private String valor;
@@ -20,7 +20,6 @@ public class TelefoneEmail {
     private Contato contato;
 
     public TelefoneEmail() {
-
     }
 
     public TelefoneEmail(String id, String rotulo, String valor, Tipo tipo, String contatoId){
@@ -71,7 +70,7 @@ public class TelefoneEmail {
         // ResultSet result = null;
         // result = Instrucao.executeUpdate(comando);
 
-        String idFromDb = '11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000';
+        String idFromDb = "11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000";
         this.id = idFromDb;
 
         System.err.println("Criou TelefoneEmail");

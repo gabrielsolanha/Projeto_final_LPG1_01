@@ -10,6 +10,6 @@ public class Valiadator {
   }
   
   public static boolean isValidTelefone (String telefone) {
-    return telefone.matches("(0/91)?[7-9][0-9]{9}");
+    return telefone.matches("[(]?[0-9]{2}[)]?[ ]?[0-9]{4,5}[ ,-]?[0-9]{4}");
   }
 }
