@@ -7,82 +7,100 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+enum Tipo {
+    EMAIL,
+    TELEFONE
+}
+
 public class TelefoneEmail {
-    private String id; 
+    private String id;
     private String rotulo;
     private String valor;
-    private String tipo;
-    
-    public TelefoneEmail(){
+    private Tipo tipo;
+    private Contato contato;
+
+    public TelefoneEmail() {
 
     }
 
-    public TelefoneEmail(String id, String rotulo, String valor, String tipo){
-        this.id=id;
-        this.rotulo=rotulo;
-        this.valor=valor;
-        this.tipo=tipo;
+    public TelefoneEmail(String id, String rotulo, String valor, Tipo tipo, String contatoId){
+        this.id = id;
+        this.rotulo = rotulo;
+        this.valor = valor;
+        this.tipo = tipo;
+
+        this.contato = Contato.findById(contatoId);
     }
 
-    public void Create(String rotulo, String valor, String tipo){
-        this.tipo=tipo;
-        this.rotulo=rotulo;
-        this.valor=valor;
-
-        //Executa Insert
-        // String comando = "INSERT INTO...";
-        // Statement Instrucao;
-        // Instrucao = conexao.createStatement();
-        // ResultSet result = null;
-        // result = Instrucao.executeUpdate(comando);
-                
-    }
-
-    public void Update(){
-        //Caso a pessoa já atualizou pelos setters
-        //Executa Update
-    }
-
-    public void Update(String id, String rotulo, String valor, String tipo){
-        //Atualiza direto e depois salva
-        this.tipo=tipo;
-        this.rotulo=rotulo;
-        this.valor=valor;
-        //Executa Update
-    }
-
-    public void Delete(int id){
-        this.id=null;
-        this.tipo=null;
-        this.rotulo=null;
-        this.valor=null;
-        //Executa Delete
-    }
-
-    public static ArrayList<TelefoneEmail> Index(){// Pode ter algum filtro aqui
-        ArrayList<TelefoneEmail> list = new ArrayList<TelefoneEmail>(); 
-        //Executa Select
+    public static ArrayList<TelefoneEmail> index() {// Pode ter algum filtro aqui
+        ArrayList<TelefoneEmail> list = new ArrayList<TelefoneEmail>();
+        // Executa Select
         // String comando = "SELECT * FROM ...";
         // Statement Instrucao;
         // Instrucao = conexao.createStatement();
         // ResultSet result = null;
         // result = Instrucao.executeQuery(comando);
-                
+
         // while(result.next()){
         //     String id = result.getString("id");
         //     String rotulo = result.getString("rotulo");
         //     String tipo = result.getString("tipo");
         //     String valor = result.getString("valor");
-        //     TelefoneEmail item = new TelefoneEmail(id, rotulo, valor, tipo);
-        //     list.add(item);
+        //     list.add(new TelefoneEmail(id, rotulo, valor, tipo));
         // }
+        System.err.println("Listou tefoneEmails");
         return list;
     }
 
-    public static TelefoneEmail Show(String id){
-        //executa select
-        TelefoneEmail res = new TelefoneEmail(); 
-        return res;
+    public static TelefoneEmail findById(String id) {
+        // executa select
+        System.err.println("Mostrou TelefoneEmail com id: "+id);
+        return new TelefoneEmail();
+    }
+
+    public void create(String rotulo, String valor, Tipo tipo, String contatoId) {
+        this.tipo = tipo;
+        this.rotulo = rotulo;
+        this.valor = valor;
+        this.contato = Contato.findById(contatoId);
+
+        // Executa Insert
+        // String comando = "INSERT INTO...";
+        // Statement Instrucao;
+        // Instrucao = conexao.createStatement();
+        // ResultSet result = null;
+        // result = Instrucao.executeUpdate(comando);
+
+        String idFromDb = '11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000';
+        this.id = idFromDb;
+
+        System.err.println("Criou TelefoneEmail");
+    }
+
+    public void update() {
+        // Caso a pessoa já atualizou pelos setters
+        // Executa Update
+
+        System.err.println("Updated: TelefoneEmail id: " + this.id);
+    }
+
+    public void update(String rotulo, String valor, Tipo tipo) {
+        // Atualiza direto e depois salva
+        this.tipo = tipo;
+        this.rotulo = rotulo;
+        this.valor = valor;
+        // Executa Update
+        System.err.println("Updated: TelefoneEmail id: " + this.id);
+    }
+
+    public void delete() {
+        String deletedId = this.id;
+        this.id = null;
+        this.tipo = null;
+        this.rotulo = null;
+        this.valor = null;
+        // Executa Delete
+        System.err.println("Deleted: TelefoneEmail id: " + deletedId);
     }
 
     public String getId() {
@@ -92,6 +110,7 @@ public class TelefoneEmail {
     public String getRotulo() {
         return this.rotulo;
     }
+
     public void setRotulo(String valor) {
         this.rotulo = valor;
     }
@@ -99,14 +118,16 @@ public class TelefoneEmail {
     public String getValor() {
         return this.valor;
     }
+
     public void setValor(String valor) {
         this.valor = valor;
     }
 
-    public String getTipo() {
+    public Tipo getTipo() {
         return this.tipo;
     }
-    public void setTipo(String valor) {
+
+    public void setTipo(Tipo valor) {
         this.tipo = valor;
     }
 
