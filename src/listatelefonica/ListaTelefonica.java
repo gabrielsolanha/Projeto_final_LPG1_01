@@ -37,7 +37,7 @@ public class ListaTelefonica {
             deleteContato(contatos);
             break;
           case 6:
-            System.out.println("Digite o id do contato a ser deletado");/////////////////////////////////////////////////ERRO2
+            System.out.println("Digite o id do contato do telefone/e-mail a ser alterado");
             String id = t.nextLine();
             t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
         
@@ -53,11 +53,11 @@ public class ListaTelefonica {
                 System.err.println(error);
               }
             } else {
-              System.err.println("Contato inválido invalido");//////////////////////////////////////////////ERRO3
+              System.err.println("Contato inválido invalido!!");
             }
             break;
           case 7:
-            System.out.println("Digite o id do contato a ser deletado");
+            System.out.println("Digite o id do contato do telefone/e-mail a ser deletado");
             id = t.nextLine();
             t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
         
@@ -73,7 +73,7 @@ public class ListaTelefonica {
                 System.err.println(error);
               }
             } else {
-              System.err.println("Contato inválido invalido");
+              System.err.println("Contato inválido invalido!");
             }
             break;
           default:
@@ -207,7 +207,7 @@ public class ListaTelefonica {
         System.err.println(error);
       }
     } else {
-      System.err.println("Contato inválido invalido");
+      System.err.println("Contato inválido invalido!!!!");
     }
 
     t.close();
@@ -233,7 +233,7 @@ public class ListaTelefonica {
         System.err.println(error);
       }
     } else {
-      System.err.println("Contato inválido invalido");
+      System.err.println("Contato inválido invalido!!!!!");
     }
 
     t.close();
