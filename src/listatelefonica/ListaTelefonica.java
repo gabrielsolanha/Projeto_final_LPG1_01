@@ -162,7 +162,6 @@ public class ListaTelefonica {
 
     contato = new Contato(id, nome, sobrenome, dataNascimento, telefoneEmails);
 
-    t.close();
     return contato;
   }
 
@@ -210,7 +209,6 @@ public class ListaTelefonica {
       System.err.println("Contato inválido invalido!!!!");
     }
 
-    t.close();
   }
 
   public static void deleteContato(ArrayList<Contato> contatos) {
@@ -236,7 +234,6 @@ public class ListaTelefonica {
       System.err.println("Contato inválido invalido!!!!!");
     }
 
-    t.close();
   }
 
 //atualiza telefone ou e-mail
@@ -278,7 +275,6 @@ public class ListaTelefonica {
       System.err.println("Contato inválido invalido");
     }
 
-    t.close();
   }
 
   //deleta telefone ou e-mail
@@ -307,6 +303,5 @@ public class ListaTelefonica {
       System.err.println("Contato inválido invalido");
     }
 
-    t.close();
   }
 }
