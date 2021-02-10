@@ -4,13 +4,13 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 public class Contato {
-    private int uuid;
+    private String uuid;
     private String nome;
     private String sobrenome;
     private Date dataNascimento;
     private ArrayList<TelefoneEmail> telefoneEmails;
-    
-    public void Adicionar(int uuid, String nome, String sobrenome, Date dataNascimento, TelefoneEmail e){
+
+    public Contato(String uuid, String nome, String sobrenome, Date dataNascimento, TelefoneEmail e){
         this.uuid = uuid;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -30,10 +30,10 @@ public class Contato {
     }
     
     public void Remover(){
-        this.uuid = -1;
-        this.nome = "";
-        this.sobrenome = "";
-        this.telefoneEmails = new ArrayList<>();
+        this.uuid = null;
+        this.nome = null;
+        this.sobrenome = null;
+        this.telefoneEmails = null;
     }
     
     public ArrayList<Contato> ListarTodos(){
@@ -44,7 +44,7 @@ public class Contato {
         
     }
 
-    public boolean Validar(){
+    public boolean validar(){
         String emailValida = "^[\\w-\\+]+(\\.[\\w]+)^*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
         String telValida = "(##) #####-####";
         for (TelefoneEmail telefoneEmail : telefoneEmails) {
@@ -62,6 +62,7 @@ public class Contato {
                 }
             }
         }
+        return false;
     }
 
 
