@@ -167,8 +167,8 @@ public class ListaTelefonica {
   }
 
   public static void imprimeTudo(ArrayList<Contato> contatos) {
-    for (Contato contato2 : contatos) {
-      contato2.imprimeDados();//////////////////////////////////////////////ERRO4
+    for (Contato contato : contatos) {
+      contato.imprimeDados();//////////////////////////////////////////////ERRO4
       // imprime tudo
     }
   }

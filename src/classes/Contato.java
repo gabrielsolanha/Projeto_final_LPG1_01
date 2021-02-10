@@ -181,4 +181,12 @@ public class Contato {
     public ArrayList<TelefoneEmail> getTelefoneEmails() {
         return this.telefoneEmails;
     }
+    public void imprimeDados(){
+        System.out.println("Idcontato: "+this.id);
+        System.out.println("Nome: "+this.nome);
+        System.out.println("Sobrenome: "+this.sobrenome);
+        for (TelefoneEmail telefoneEmail : telefoneEmails) {
+            telefoneEmail.imprimeDados();
+        }
+    }
 }

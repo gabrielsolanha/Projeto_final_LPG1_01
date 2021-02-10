@@ -129,5 +129,12 @@ public class TelefoneEmail {
     public void setTipo(Tipo valor) {
         this.tipo = valor;
     }
+    
+    public void imprimeDados(){
+        System.out.println("id: " +this.id);
+        System.out.println("Rotulo: "+ this.rotulo);
+        System.out.println("Valor: " +this.valor);
+    }
+
 
 }
