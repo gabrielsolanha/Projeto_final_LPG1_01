@@ -1,11 +1,11 @@
 package src.classes;
 
 import java.util.ArrayList;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+// import java.sql.Connection;
+// import java.sql.DriverManager;
+// import java.sql.ResultSet;
+// import java.sql.SQLException;
+// import java.sql.Statement;
 
 public class TelefoneEmail {
     public enum Tipo {
@@ -70,7 +70,8 @@ public class TelefoneEmail {
         // ResultSet result = null;
         // result = Instrucao.executeUpdate(comando);
 
-        String idFromDb = "11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000";
+        // String idFromDb = "11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000";
+        String idFromDb = "idfacil";
         this.id = idFromDb;
 
         System.err.println("Criou TelefoneEmail");
@@ -130,11 +131,8 @@ public class TelefoneEmail {
         this.tipo = valor;
     }
     
-    public void imprimeDados(){
-        System.out.println("id: " +this.id);
-        System.out.println("Rotulo: "+ this.rotulo);
-        System.out.println("Valor: " +this.valor);
+    public Contato getContato() {
+        return this.contato;
     }
-
 
 }
