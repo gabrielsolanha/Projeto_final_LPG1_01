@@ -9,34 +9,31 @@ import src.classes.TelefoneEmail;
 import src.classes.TelefoneEmail.Tipo;
 
 public class ListaTelefonica {
-  public static void main(String args[]) {//////////////////////////////////////////////ERRO1
-    // interage por aqui
+  public static void main(String args[]) {
     int x;
     Scanner t = new Scanner(System.in);
-    ArrayList<TelefoneEmail> telefoneEmails;
     ArrayList<Contato> contatos = new ArrayList<Contato>();
+
+    //MENU GERAL
     do {
       mostraMenu();
       x = t.nextInt();
       if (x != 0) {
+        //CASOS DE INTERAÇÃO
         switch (x) {
           case 1:
             contatos.add(adicionaContato());
             break;
           case 2:
-            telefoneEmails = adicionaListadeTelMail();
-            // adicionar aqui a lista ao contato
-            break;
-          case 3:
             imprimeTudo(contatos);
             break;
-          case 4:
+          case 3:
             atulizaContato(contatos);
             break;
-          case 5:
+          case 4:
             deleteContato(contatos);
             break;
-          case 6:
+          case 5:
             System.out.println("Digite o id do contato do telefone/e-mail a ser alterado");
             String id = t.nextLine();
             t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
@@ -82,64 +79,131 @@ public class ListaTelefonica {
         }
       }
     } while (x != 0);
+    t.close();
   }
-
-  ////////////////////////////// Fim da
-  ////////////////////////////// main///////////////////////////////////////
+  //end main
+  
+  //Funções para interações:
   private static void mostraMenu() {
-    System.out.println("0-para sair 1-para adicionar um contato");
-    System.out.println("2-para adicionar uma lista de Telefones ou e-mails do contato");
-    System.out.println(" 3-para imprimir todos os contatos e suas informações");
-    System.out.println("4-para auterar um contato 5-para remover um contato");
-    System.out.println("6-para auterar um e-mail/telefone 7-para remover um e-mail/telefone");
+    System.out.println("Escolha uma das opcoes abaixo:");
+    System.out.println("");
+    System.out.println("0-para sair");
+    System.out.println("1-para adicionar um contato");
+    System.out.println("2-para imprimir todos os contatos e suas informações");
+    System.out.println("3-para auterar um contato");
+    System.out.println("4-para remover um contato");
+    System.out.println("5-para auterar um e-mail/telefone 7-para remover um e-mail/telefone");
   }
 
-  private static ArrayList<TelefoneEmail> adicionaListadeTelMail() {
+  //INTERAÇÕES COM TELEFONE OU EMAIL
+  
+  //Adicionar
+  private static void adicionaListadeTelMail(Contato contato) {
     Scanner t = new Scanner(System.in);
     Tipo tipo;
     int y;
-    String teloumail, rotulo, valor, id, nome, sobrenome, contatoId;
-    TelefoneEmail telemail;
-    ArrayList<TelefoneEmail> telefoneEmails;
+    String teloumail, rotulo, valor;
 
-    telefoneEmails = new ArrayList<TelefoneEmail>();
     do {
       System.out.println("0-para sair 1-para adicionar mais a lista");
       y = t.nextInt();
-      if (y != 0) {
-        System.out.println("Digite \"email\" se for add um e-mail ou \"telefone\" se for add um telefone");
-        teloumail = t.nextLine();
-        t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
-        if (teloumail.equals("email")) {
-          tipo = Tipo.EMAIL;
-        } else {
-          tipo = Tipo.TELEFONE;
-        }
-        System.out.println("Infome o rotulo desejado: (Ex: trabalho, casa, etc..)");
-        rotulo = t.nextLine();
-        t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
-        System.out.println("Infome o valor desejado: (Ex:nome.sobenm@mail.com ou (99) 99999-9999)");
-        valor = t.nextLine();
-        t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
+      // if (y != 0) {// valida 
+      //   System.out.println("Digite \"email\" se for add um e-mail ou \"telefone\" se for add um telefone");
+      //   teloumail = t.nextLine();
+      //   t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
 
-        // aqui vem o gerador do id
+      //   tipo = teloumail.equals("email") ? Tipo.EMAIL : Tipo.TELEFONE;
 
-        id = "algumas coisas";
-        contatoId = "alguma coisa";
+      //   System.out.println("Infome o rotulo desejado: (Ex: trabalho, casa, etc..)");
+      //   rotulo = t.nextLine();
+      //   t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
+      //   System.out.println("Infome o valor desejado: (Ex:nome.sobenm@mail.com ou (99) 99999-9999)");
+      //   valor = t.nextLine();
+      //   t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
 
-        telemail = new TelefoneEmail(id, rotulo, valor, tipo, contatoId);
-        telefoneEmails.add(telemail);
-      }
+      //   contato.createTelefoneEmail(rotulo, valor, tipo);
+      // }
     } while (y != 0);
-    return telefoneEmails;
+    t.close();
   }
 
-  private static Contato adicionaContato() {
+  //atualiza telefone ou e-mail
+  public static void atulizaTelefoneEmail(ArrayList<TelefoneEmail> telefoneEmails) {
+    Scanner t = new Scanner(System.in);
+    String rotulo,valor,teloumail,id;
+    Tipo tipo;
+
+    System.out.println("Digite o id do telefone ou e-mail a ser auterado");
+    id = t.nextLine();
+    t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
+    System.out.println("Digite o novo rotulo do telefone ou e-mail :");
+    rotulo = t.nextLine();
+    t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL    
+    System.out.println("Infome o novo valor");
+    valor = t.nextLine();
+    t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
+    System.out.println("Infome o novo tipo do telefone ou e-mail :");
+    teloumail = t.nextLine();
+    if (teloumail.equals("email")) {
+      tipo = Tipo.EMAIL;
+    } else {
+      tipo = Tipo.TELEFONE;
+    }
+
+    TelefoneEmail telmailToUpdate = telefoneEmails.stream()
+        .filter(telmail -> id.equals(telmail.getId()))
+        .findFirst()
+        .orElse(null);
+
+    if (telmailToUpdate != null) {
+      try {
+        telmailToUpdate.update(rotulo, valor, tipo);// atualiza do banco
+      } catch (Exception error) {
+        System.err.println(error);
+      }
+    } else {
+      System.err.println("Contato inválido invalido");
+    }
+    t.close();
+  }
+
+  //deleta telefone ou e-mail
+  public static void deleteTelefoneEmail(ArrayList<TelefoneEmail> telefoneEmails) {
+    Scanner t = new Scanner(System.in);
+    String  id;
+
+    System.out.println("Digite o id do telefone ou e-mail a ser deletado");
+    id = t.nextLine();
+    t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
+
+    TelefoneEmail telmailToDelete = telefoneEmails.stream()
+        .filter(telmail -> id.equals(telmail.getId()))
+        .findFirst()
+        .orElse(null);
+
+    if (telmailToDelete != null) {
+      try {
+        telmailToDelete.delete();// Delete do banco
+        telefoneEmails.remove(telmailToDelete);// Delete da lista
+      } catch (Exception error) {
+        System.err.println(error);
+      }
+    } else {
+      System.err.println("Contato inválido invalido");
+    }
+    t.close();
+  }
+  
+  //FIM DAS INTERAÇÕES COM TELEFONE OU EMAIL
+
+  //INTERAÇÕES COM O CONTATO
+  
+  //Pegar dados somente do contato
+  private static Contato inputContato() {
     Scanner t = new Scanner(System.in);
     int year, month, day;
-    String nome, sobrenome, id;
+    String nome, sobrenome;
     Date dataNascimento;
-    Contato contato;
     ArrayList<TelefoneEmail> telefoneEmails;
     telefoneEmails = new ArrayList<TelefoneEmail>();
 
@@ -149,50 +213,54 @@ public class ListaTelefonica {
     System.out.println("Infome o sobrenome");
     sobrenome = t.nextLine();
     t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
-    System.out.println("Infome o valor do ano de nascimento do contato:");
-    year = t.nextInt();
-    System.out.println("Infome o valor do mês de nascimento do contato:");
-    month = t.nextInt();
-    System.out.println("Infome o valor do dia de nascimento do contato:");
+    System.out.println("Infome a data de nascimento:");
+    
+    System.out.print("Dia:");
     day = t.nextInt();
+
+    System.out.print("\nMes:");
+    month = t.nextInt();
+    
+    System.out.print("\nAno:");
+    year = t.nextInt();
+
     dataNascimento = new Date(year, month, day);
 
-    // aqui vem o gerador do id
-    id = "alguma coisa";
+    t.close();
+    return new Contato(nome, sobrenome, dataNascimento, telefoneEmails);
+  }
 
-    contato = new Contato(id, nome, sobrenome, dataNascimento, telefoneEmails);
-
+  //Adiciona um contato completo
+  private static Contato adicionaContato() {
+    Contato contato = inputContato();
+    contato.create();
+    adicionaListadeTelMail(contato);
     return contato;
   }
 
   public static void imprimeTudo(ArrayList<Contato> contatos) {
     for (Contato contato : contatos) {
-      contato.imprimeDados();//////////////////////////////////////////////ERRO4
-      // imprime tudo
+      System.out.println("Contato com id: "+contato.getId());
+      System.out.println("Nome completo: "+contato.getNome()+" "+contato.getSobrenome());
+      Date currentDataNasc = contato.getDataNascimento(); 
+      System.out.println("Data de nascimento:"+currentDataNasc.getDate()+"/"+currentDataNasc.getMonth()+"/"+currentDataNasc.getYear());
+      System.out.println("Contatos:");
+      System.out.println("\tTipo\tRotulo\tValor");
+
+      contato.getTelefoneEmails().forEach(item -> {
+        System.out.println("\t"+item.getTipo().name()+"\t"+item.getRotulo()+"\t"+item.getValor());
+      });
     }
   }
 
   public static void atulizaContato(ArrayList<Contato> contatos) {
     Scanner t = new Scanner(System.in);
-    int year, month, day;
-    String nome, sobrenome, id;
-    Date dataNascimento;
+    String id;
 
     System.out.println("Digite o id do contato a ser auterado");
     id = t.nextLine();
-    t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
-    System.out.println("Digite o novo nome do contato:");
-    nome = t.nextLine();
-    t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
-    System.out.println("Infome o novo sobrenome");
-    sobrenome = t.nextLine();
-    System.out.println("Infome o valor do ano de nascimento do contato:");
-    year = t.nextInt();
-    System.out.println("Infome o valor do mês de nascimento do contato:");
-    month = t.nextInt();
-    System.out.println("Infome o valor do dia de nascimento do contato:");
-    day = t.nextInt();
-    dataNascimento = new Date(year, month, day);
+
+    Contato newContato = inputContato();
 
     Contato contatoToUpdate = contatos.stream()
     .filter(contato -> id.equals(contato.getId()))
@@ -201,14 +269,14 @@ public class ListaTelefonica {
 
     if (contatoToUpdate != null) {
       try {
-        contatoToUpdate.update(nome, sobrenome, dataNascimento);// atuliza do banco
+        contatoToUpdate.update(newContato.getNome(), newContato.getSobrenome(), newContato.getDataNascimento());// atuliza do banco
       } catch (Exception error) {
         System.err.println(error);
       }
     } else {
-      System.err.println("Contato inválido invalido!!!!");
+      System.err.println("Contato inválido invalido!");
     }
-
+    t.close();
   }
 
   public static void deleteContato(ArrayList<Contato> contatos) {
@@ -233,75 +301,6 @@ public class ListaTelefonica {
     } else {
       System.err.println("Contato inválido invalido!!!!!");
     }
-
-  }
-
-//atualiza telefone ou e-mail
-
-  public static void atulizaTelefoneEmail(ArrayList<TelefoneEmail> telefoneEmails) {
-    Scanner t = new Scanner(System.in);
-    String rotulo,valor,teloumail,id;
-    Tipo tipo;
-
-    System.out.println("Digite o id do telefone ou e-mail a ser auterado");
-    id = t.nextLine();
-    t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
-    System.out.println("Digite o novo rotulo do telefone ou e-mail :");
-    rotulo = t.nextLine();
-    t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
-    System.out.println("Infome o novo valor");
-    valor = t.nextLine();
-    System.out.println("Infome o novo tipo do telefone ou e-mail :");
-    teloumail = t.nextLine();
-    t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
-    if (teloumail.equals("email")) {
-      tipo = Tipo.EMAIL;
-    } else {
-      tipo = Tipo.TELEFONE;
-    }
-
-    TelefoneEmail telmailToUpdate = telefoneEmails.stream()
-        .filter(telmail -> id.equals(telmail.getId()))
-        .findFirst()
-        .orElse(null);
-
-    if (telmailToUpdate != null) {
-      try {
-        telmailToUpdate.update(rotulo, valor, tipo);;// atualiza do banco
-      } catch (Exception error) {
-        System.err.println(error);
-      }
-    } else {
-      System.err.println("Contato inválido invalido");
-    }
-
-  }
-
-  //deleta telefone ou e-mail
-
-  public static void deleteTelefoneEmail(ArrayList<TelefoneEmail> telefoneEmails) {
-    Scanner t = new Scanner(System.in);
-    String  id;
-
-    System.out.println("Digite o id do telefone ou e-mail a ser deletado");
-    id = t.nextLine();
-    t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
-
-    TelefoneEmail telmailToDelete = telefoneEmails.stream()
-        .filter(telmail -> id.equals(telmail.getId()))
-        .findFirst()
-        .orElse(null);
-
-    if (telmailToDelete != null) {
-      try {
-        telmailToDelete.delete();// Delete do banco
-        telefoneEmails.remove(telmailToDelete);// Delete da lista
-      } catch (Exception error) {
-        System.err.println(error);
-      }
-    } else {
-      System.err.println("Contato inválido invalido");
-    }
-
+    t.close();
   }
 }

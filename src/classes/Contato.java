@@ -15,6 +15,18 @@ public class Contato {
     public Contato() {
     }
 
+    public Contato(
+        String nome, 
+        String sobrenome, 
+        Date dataNascimento,
+        ArrayList<TelefoneEmail> telefoneEmails
+    ) {
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.dataNascimento = dataNascimento;
+        this.telefoneEmails = telefoneEmails;
+    }
+
     public Contato(String id, String nome, String sobrenome, Date dataNascimento,
             ArrayList<TelefoneEmail> telefoneEmails) {
         this.id = id;
@@ -50,6 +62,21 @@ public class Contato {
         return new Contato();
     }
 
+    public void create() {
+        // Executa Insert
+        // String comando = "INSERT INTO...";
+        // Statement Instrucao;
+        // Instrucao = conexao.createStatement();
+        // ResultSet result = null;
+        // result = Instrucao.executeUpdate(comando);
+
+        // String idFromDb = "11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000";
+        String idFromDb = "idfacil";
+        this.id = idFromDb;
+
+        System.err.println("Criou Contato");
+    }
+
     public void create(String nome, String sobrenome, Date dataNascimento, ArrayList<TelefoneEmail> telefoneEmails) {
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -63,7 +90,8 @@ public class Contato {
         // ResultSet result = null;
         // result = Instrucao.executeUpdate(comando);
 
-        String idFromDb = "11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000";
+        // String idFromDb = "11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000";
+        String idFromDb = "idfacil";
         this.id = idFromDb;
 
         System.err.println("Criou Contato");
@@ -81,7 +109,6 @@ public class Contato {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.dataNascimento = dataNascimento;
-        this.telefoneEmails = telefoneEmails;
         // Executa Update
         System.err.println("Updated: Contato id: " + this.id);
     }
@@ -180,13 +207,5 @@ public class Contato {
 
     public ArrayList<TelefoneEmail> getTelefoneEmails() {
         return this.telefoneEmails;
-    }
-    public void imprimeDados(){
-        System.out.println("Idcontato: "+this.id);
-        System.out.println("Nome: "+this.nome);
-        System.out.println("Sobrenome: "+this.sobrenome);
-        for (TelefoneEmail telefoneEmail : telefoneEmails) {
-            telefoneEmail.imprimeDados();
-        }
     }
 }
