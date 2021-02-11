@@ -9,7 +9,6 @@ import src.classes.TelefoneEmail;
 import src.classes.TelefoneEmail.Tipo;
 
 public class ListaTelefonica {
-  //INTERFACE DO USUÁRIO VIA TERMINAL
   public static void main(String args[]) {
     int x;
     Scanner t = new Scanner(System.in);
@@ -25,16 +24,16 @@ public class ListaTelefonica {
           case 1:
             contatos.add(adicionaContato());
             break;
-          case 3:
+          case 2:
             imprimeTudo(contatos);
             break;
-          case 4:
+          case 3:
             atulizaContato(contatos);
             break;
-          case 5:
+          case 4:
             deleteContato(contatos);
             break;
-          case 6:
+          case 5:
             System.out.println("Digite o id do contato do telefone/e-mail a ser alterado");
             String id = t.nextLine();
             t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
@@ -80,6 +79,7 @@ public class ListaTelefonica {
         }
       }
     } while (x != 0);
+    t.close();
   }
   //end main
   
@@ -89,9 +89,10 @@ public class ListaTelefonica {
     System.out.println("");
     System.out.println("0-para sair");
     System.out.println("1-para adicionar um contato");
-    System.out.println("3-para imprimir todos os contatos e suas informações");
-    System.out.println("4-para auterar um contato 5-para remover um contato");
-    System.out.println("6-para auterar um e-mail/telefone 7-para remover um e-mail/telefone");
+    System.out.println("2-para imprimir todos os contatos e suas informações");
+    System.out.println("3-para auterar um contato");
+    System.out.println("4-para remover um contato");
+    System.out.println("5-para auterar um e-mail/telefone 7-para remover um e-mail/telefone");
   }
 
   //INTERAÇÕES COM TELEFONE OU EMAIL
@@ -102,27 +103,28 @@ public class ListaTelefonica {
     Tipo tipo;
     int y;
     String teloumail, rotulo, valor;
-    
+
     do {
       System.out.println("0-para sair 1-para adicionar mais a lista");
       y = t.nextInt();
-      if (y != 0) {// valida 
-        System.out.println("Digite \"email\" se for add um e-mail ou \"telefone\" se for add um telefone");
-        teloumail = t.nextLine();
-        t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
+      // if (y != 0) {// valida 
+      //   System.out.println("Digite \"email\" se for add um e-mail ou \"telefone\" se for add um telefone");
+      //   teloumail = t.nextLine();
+      //   t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
 
-        tipo = teloumail.equals("email") ? Tipo.EMAIL : Tipo.TELEFONE;
+      //   tipo = teloumail.equals("email") ? Tipo.EMAIL : Tipo.TELEFONE;
 
-        System.out.println("Infome o rotulo desejado: (Ex: trabalho, casa, etc..)");
-        rotulo = t.nextLine();
-        t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
-        System.out.println("Infome o valor desejado: (Ex:nome.sobenm@mail.com ou (99) 99999-9999)");
-        valor = t.nextLine();
-        t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
+      //   System.out.println("Infome o rotulo desejado: (Ex: trabalho, casa, etc..)");
+      //   rotulo = t.nextLine();
+      //   t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
+      //   System.out.println("Infome o valor desejado: (Ex:nome.sobenm@mail.com ou (99) 99999-9999)");
+      //   valor = t.nextLine();
+      //   t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
 
-        contato.createTelefoneEmail(rotulo, valor, tipo);
-      }
+      //   contato.createTelefoneEmail(rotulo, valor, tipo);
+      // }
     } while (y != 0);
+    t.close();
   }
 
   //atualiza telefone ou e-mail
@@ -136,12 +138,12 @@ public class ListaTelefonica {
     t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
     System.out.println("Digite o novo rotulo do telefone ou e-mail :");
     rotulo = t.nextLine();
-    t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
+    t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL    
     System.out.println("Infome o novo valor");
     valor = t.nextLine();
+    t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
     System.out.println("Infome o novo tipo do telefone ou e-mail :");
     teloumail = t.nextLine();
-    t.nextLine();// deve-se adicionar sempre esse comando antes para consumir o NL
     if (teloumail.equals("email")) {
       tipo = Tipo.EMAIL;
     } else {
@@ -155,14 +157,14 @@ public class ListaTelefonica {
 
     if (telmailToUpdate != null) {
       try {
-        telmailToUpdate.update(rotulo, valor, tipo);;// atualiza do banco
+        telmailToUpdate.update(rotulo, valor, tipo);// atualiza do banco
       } catch (Exception error) {
         System.err.println(error);
       }
     } else {
       System.err.println("Contato inválido invalido");
     }
-
+    t.close();
   }
 
   //deleta telefone ou e-mail
@@ -189,7 +191,7 @@ public class ListaTelefonica {
     } else {
       System.err.println("Contato inválido invalido");
     }
-
+    t.close();
   }
   
   //FIM DAS INTERAÇÕES COM TELEFONE OU EMAIL
@@ -299,6 +301,6 @@ public class ListaTelefonica {
     } else {
       System.err.println("Contato inválido invalido!!!!!");
     }
-
+    t.close();
   }
 }
